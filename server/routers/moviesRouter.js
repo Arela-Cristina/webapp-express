@@ -1,7 +1,7 @@
 //import express  18
 const express = require('express') 
 const router = express.Router() //importiamo il router  19
-const movieController = require('../controllers/bookController') //salviamo la istanza dei controllers  20
+const movieController = require('../controllers/moviesController') //salviamo la istanza dei controllers  20
 
 // index
 router.get('/', movieController.index)  //creiamo la rotta index 21
