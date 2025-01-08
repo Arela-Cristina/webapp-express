@@ -1,10 +1,13 @@
 console.log('cri')
 const express = require('express'); //importare express  1
+const cors = require('cors') //instaliamo cors 30
 const app = express(); // salviamo istanza della funzione express  2
 const port = 3000; //dichiariammo la porta  3
 const notFound = require('./middlewares/notFound') //importiamo middleware notFound 9
 const errorsHandler = require('./middlewares/errorsHandler')  //importiamo middleware notFound 11
 const movieRouter = require('./routers/moviesRouter') //importiamo le rotte 24
+
+app.use(cors()); //registriamo cors 31
 
 // importiamo middleware per rendere publiche le immagini  6
 app.use(express.static('public'))
