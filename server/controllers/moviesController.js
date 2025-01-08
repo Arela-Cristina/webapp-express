@@ -18,4 +18,4 @@ function show(req, res) {
     })
 }
 
-module.export = { index, show } // esportiamo i controller.
+module.exports = { index, show } // esportiamo i controller.
