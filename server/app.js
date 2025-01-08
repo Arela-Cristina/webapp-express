@@ -1,6 +1,6 @@
 console.log('cri')
 const express = require('express'); //importare express  1
-const app = express(); // salviamo instancia della funzione express  2
+const app = express(); // salviamo istanza della funzione express  2
 const port = 3000 //dichiariammo la porta  3
 
 
