@@ -9,4 +9,4 @@ router.get('/', movieController.index)  //creiamo la rotta index 21
 // show
 router.get('/:id', movieController.show) //creiamo la rotta index 22
 
-module.exports = router  //esportiamo 23
+module.exports = router  //esportiamo per dopo importare in App.js 23
