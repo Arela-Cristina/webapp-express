@@ -9,7 +9,7 @@ const connection = mysql.createConnection({ //dichiariamo i nostri dati di workb
     database: 'movies_db'
 })
 
-connection.connect((err) => { // chiamata to connection tramite callback  14
+connection.connect((err) => { // connection tramite callback  14
     if (err) throw err
 
     console.log('Collegamento MYSQL ok')
