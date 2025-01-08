@@ -4,6 +4,9 @@ const app = express(); // salviamo istanza della funzione express  2
 const port = 3000 //dichiariammo la porta  3
 
 
+// importiamo middleware per rendere publiche le immagini
+app.use(express.static('public'))
+
 //creiamo la prima rotta get, semplicemente mandiamo una risposta 5
 app.get('/', (req, res) => {
     res.send(`Server operativo`)
