@@ -8,18 +8,48 @@ const connection = require('../data/db')
 //index
 function index(req, res) {
     //esseguiamo prima la query su workbench per poi fare la query giusta ed avere tutti i film 26
-    let sql = `SELECT * FROM movies`
+    // let sql = `SELECT * FROM movies`
+    // connection.query(sql, (err, movies) => {
+    //     if (err) return res.status(500).json({ message: err.message })
+    //     res.json(movies)
+    // })
+
+    let sql = `SELECT movies.*, AVG(reviews.vote) AS avg_vote 
+    FROM movies
+    JOIN reviews
+    ON movies.id = reviews.movie_id`
+
+    // BONUS: aggiungere eventuali filtri
+    if (req.query.search) {
+        sql += ` WHERE title LIKE '%${req.query.search}%' OR director LIKE '%${req.query.search}%' OR abstract LIKE '%${req.query.search}%'`
+    }
+
+    sql += ` GROUP BY movies.id`
+
+    // BONUS: aggiungere paginazione
+    // BONUS: aggiungere ordinamento
+
     connection.query(sql, (err, movies) => {
+        // console.log(err)
         if (err) return res.status(500).json({ message: err.message })
+
+        console.log("Movies array:", movies);
+
+        movies.forEach((movie) => {
+            console.log('original movie', movie,  movie.image)
+            movie.image = `http://localhost:3000/${movie.image}`;
+
+        })
+
         res.json(movies)
     })
 }
 
 //show
 function show(req, res) {
-  //recupero el id di ogni movie 27
+    //recupero el id di ogni movie 27
     const id = req.params.id
-   
+
     //query per avere un film 28
     const sql = `SELECT * FROM movies WHERE id = ?`
 
@@ -39,7 +69,7 @@ function show(req, res) {
             if (err) return res.status(500).json({ message: err.message })
 
             movie.reviews = results
-           
+
             res.json(movie)
         })
     })
