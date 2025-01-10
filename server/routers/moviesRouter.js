@@ -4,7 +4,7 @@ const router = express.Router() //importiamo il router  19
 const movieController = require('../controllers/moviesController') //salviamo la istanza dei controllers  20
 
 const movieLoggerMiddleware = (req, res, next) => {
-    console.log('Movie Request', req);
+    //console.log('Movie Request', req);
     next();
 };
 

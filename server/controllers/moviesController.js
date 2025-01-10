@@ -36,7 +36,7 @@ function index(req, res) {
         console.log("Movies array:", movies);
 
         movies.forEach((movie) => {
-            console.log('original movie', movie,  movie.image)
+            //console.log('original movie', movie,  movie.image)
             movie.image = `http://localhost:3000/${movie.image}`;
 
         })
@@ -65,12 +65,26 @@ function show(req, res) {
 
         const sql = `SELECT * FROM reviews WHERE movie_id = ?` //query per avere la review di un film 29
 
-        connection.query(sql, [id], (err, results) => {
+        connection.query(sql, [id, 3], (err, results) => {
             if (err) return res.status(500).json({ message: err.message })
 
             movie.reviews = results
+            //console.log(movie.reviews);
 
-            res.json(movie)
+            const reviewVotes = [];
+            movie.reviews.forEach(review => {
+                reviewVotes.push(review.vote);
+            });
+
+            let reviewSum = 0;
+            for (let i = 0; i < reviewVotes.length; i++) {
+                reviewSum += reviewVotes[i];
+            }
+            const reviewAvg = reviewSum / reviewVotes.length;
+
+            movie.avg_vote = reviewAvg;
+
+            res.json(movie);
         })
     })
 }
