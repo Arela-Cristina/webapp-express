@@ -8,6 +8,8 @@ const errorsHandler = require('./middlewares/errorsHandler')  //importiamo middl
 const movieRouter = require('./routers/moviesRouter') //importiamo le rotte 24
 
 app.use(cors()); //registriamo cors 31
+app.use(express.json()); //body parser 
+
 
 // importiamo middleware per rendere publiche le immagini  6
 app.use(express.static('public'))
