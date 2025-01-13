@@ -89,4 +89,8 @@ function show(req, res) {
     })
 }
 
-module.exports = { index, show } 
+function store(req, res) {
+    res.send('Got a POST request');
+}
+
+module.exports = { index, show, store } 
