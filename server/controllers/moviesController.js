@@ -91,8 +91,23 @@ function show(req, res) {
 
 function storeReviews(req, res) {
     console.log(req.body)
-    res.send('Got a POST request');
-    
+    //recupero el id del libro
+    let id = req.params.id
+    //recupero i valori delle risposte del body destrutturazione
+
+    const { name, vote, text } = req.body
+    //parse
+    let intVote = parseInt(vote)
+
+
+    //callback sql
+    const sql = 'INSERT INTO reviews(movie_id, name, vote, text) VALUES (?,?,?,?)';
+  
+    connection.query(sql, [id, name, intVote, text], (err, result) => {
+        if (err) return res.status(500).json({ message: 'DB Query failed' });
+        console.log('results', result)
+        res.status(201).json({ message: 'Review already added', id: result.insertId })
+    });
 }
 
 module.exports = { index, show, storeReviews } 
