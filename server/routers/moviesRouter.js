@@ -15,6 +15,6 @@ router.get('/', movieLoggerMiddleware, movieController.index)  //creiamo la rott
 router.get('/:id', movieLoggerMiddleware, movieController.show) //creiamo la rotta show 22
 
 //store
-router.post('/:id', movieController.storeReviews) //rotta index
+router.post('/:id', movieController.storeReviews) //rotta store
 
 module.exports = router  //esportiamo per dopo importare in App.js 23
