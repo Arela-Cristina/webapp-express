@@ -89,8 +89,10 @@ function show(req, res) {
     })
 }
 
-function store(req, res) {
+function storeReviews(req, res) {
+    console.log(req.body)
     res.send('Got a POST request');
+    
 }
 
-module.exports = { index, show, store } 
+module.exports = { index, show, storeReviews } 

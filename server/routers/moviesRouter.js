@@ -12,6 +12,9 @@ const movieLoggerMiddleware = (req, res, next) => {
 router.get('/', movieLoggerMiddleware, movieController.index)  //creiamo la rotta index 21
 
 // show
-router.get('/:id', movieLoggerMiddleware, movieController.show) //creiamo la rotta index 22
+router.get('/:id', movieLoggerMiddleware, movieController.show) //creiamo la rotta show 22
+
+//store
+router.post('/:id', movieController.storeReviews) //rotta index
 
 module.exports = router  //esportiamo per dopo importare in App.js 23
